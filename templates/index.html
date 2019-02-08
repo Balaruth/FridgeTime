@@ -1,0 +1,7 @@
+{% extends "frame.html" %}
+{% block content %}
+    {% for test in testdata %}
+        <h1>{{ test.recipename }}</h1>
+        <p>{{ test.ingredients }}</p>
+    {% endfor %}
+{% endblock content %}
