@@ -28,14 +28,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="/">Recipe Book</a>
+                        <a class="nav-item nav-link" href="{{ url_for('index') }}">Recipe Book</a>
                         <a class="nav-item nav-link" href="#">Calendar</a>
                         <a class="nav-item nav-link" href="#">Leftovers</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="/login">Login</a>
-                        <a class="nav-item nav-link" href="/register">Register</a>
+                        <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                        <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
                     </div>
                 </div>
             </div>
@@ -45,6 +45,15 @@
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8">
+                {% with messages = get_flashed_messages(with_categories=true) %}  <!-- enable flash messages -->
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                 {% block content %}{% endblock %}
             </div>
         </div>
