@@ -1,0 +1,9 @@
+association_table = db.Table('association',
+    db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
+    db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id'))
+)
+
+# from class Recipe
+
+ingredients = db.relationship('Ingredient', secondary=association_table, backref=db.backref('recipes', lazy='dynamic'))
+
